@@ -15,6 +15,7 @@ type zapLogger struct {
 func getEncoder(isJSON bool) zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
 	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	encoderConfig.TimeKey = "time"
 	if isJSON {
 		return zapcore.NewJSONEncoder(encoderConfig)
 	}
