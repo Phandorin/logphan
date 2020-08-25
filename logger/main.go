@@ -10,10 +10,10 @@ func main() {
 	config := logger.Configuration{
 		EnableConsole:     true,
 		ConsoleLevel:      logger.Debug,
-		ConsoleJSONFormat: true,
+		ConsoleJSONFormat: false,
 		EnableFile:        true,
 		FileLevel:         logger.Info,
-		FileJSONFormat:    true,
+		FileJSONFormat:    false,
 		FileLocation:      "log.log",
 	}
 	err := logger.NewLogger(config, logger.InstanceZapLogger)

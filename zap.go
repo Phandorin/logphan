@@ -14,7 +14,7 @@ type zapLogger struct {
 
 func getEncoder(isJSON bool) zapcore.Encoder {
 	encoderConfig := zap.NewProductionEncoderConfig()
-	encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+	encoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
 	encoderConfig.TimeKey = "time"
 	if isJSON {
 		return zapcore.NewJSONEncoder(encoderConfig)
@@ -63,8 +63,8 @@ func newZapLogger(config Configuration) (Logger, error) {
 
 	combinedCore := zapcore.NewTee(cores...)
 
-  // AddCallerSkip skips 2 number of callers, this is important else the file that gets 
-  // logged will always be the wrapped file. In our case zap.go
+	// AddCallerSkip skips 2 number of callers, this is important else the file that gets
+	// logged will always be the wrapped file. In our case zap.go
 	logger := zap.New(combinedCore,
 		zap.AddCallerSkip(2),
 		zap.AddCaller(),
